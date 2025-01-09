@@ -1,0 +1,11 @@
+# Binaries
+*.exe
+*.out
+*.so
+
+# Logs
+*.log
+
+# IDE Files
+.vscode/
+.idea/
