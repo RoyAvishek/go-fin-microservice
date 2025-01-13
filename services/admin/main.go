@@ -5,6 +5,7 @@ import (
 
 	"go-fin-microservice/services/admin/internal/config"
 	"go-fin-microservice/services/admin/internal/database"
+	"go-fin-microservice/services/admin/internal/routes"
 
 	"github.com/gin-gonic/gin"
 )
@@ -13,10 +14,11 @@ func main() {
 
 	// Initialize the database
 	database.InitializeDatabase()
-
+	database.MigrateDB()
+	database.SeedDB()
 	// Confirm successful initialization
-	db := database.GetDB()
-	log.Println("Database connection is ready:", db)
+	database.GetDB()
+	log.Println("Database connection is ready:")
 
 	config.InitConfig()
 
@@ -26,6 +28,7 @@ func main() {
 	router := gin.Default()
 
 	router.GET("/health", getHealthCheck)
+	routes.RegisterRoutes(router)
 
 	log.Println("Admin service is running on port: ", port)
 	log.Printf("Started Admin service in %s mode", env)
