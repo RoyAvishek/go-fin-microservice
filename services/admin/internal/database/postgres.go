@@ -23,6 +23,7 @@ func InitializeDatabase() {
 		os.Getenv("DB_NAME"),
 		os.Getenv("DB_PORT"))
 
+	fmt.Println("Database DSN:", dsn)
 	var err error
 
 	// Open a connection to the database

@@ -15,6 +15,7 @@ COPY . .
 
 # Build with optimizations
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build \
+    # Reduce binary size by omitting the symbol table and debug information
     -ldflags='-w -s' \
     -o main .
 
